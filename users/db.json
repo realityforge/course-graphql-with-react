@@ -4,19 +4,41 @@
       "id": "1",
       "firstName": "Luke",
       "lastName": "Skywalker",
-      "age": 18
+      "age": 18,
+      "organizationId": "A"
     },
     {
       "id": "2",
       "firstName": "Han",
       "lastName": "Solo",
-      "age": 32
+      "age": 32,
+      "organizationId": "A"
     },
     {
       "id": "3",
       "firstName": "Leia",
       "lastName": "Organa",
-      "age": 18
+      "age": 18,
+      "organizationId": "A"
+    },
+    {
+      "id": "4",
+      "firstName": "Darth",
+      "lastName": "Vader",
+      "age": 39,
+      "organizationId": "B"
+    }
+  ],
+  "organizations": [
+    {
+      "id": "B",
+      "name" : "The Galactic Empire",
+      "description": "The Bad guys"
+    },
+    {
+      "id": "A",
+      "name" : "The Rebel Alliance",
+      "description": "The Good guys"
     }
   ]
 }
