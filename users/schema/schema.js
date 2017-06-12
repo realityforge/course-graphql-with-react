@@ -6,11 +6,16 @@ const {
   GraphQLString,
   GraphQLInt,
   GraphQLList,
-  GraphQLSchema
+  GraphQLSchema,
+  GraphQLNonNull
 } = graphql;
 
+function backendUrl( path ) {
+  return `http://localhost:3000/${path}`;
+}
+
 function queryBackend( path ) {
-  return axios.get( `http://localhost:3000/${path}` ).
+  return axios.get( backendUrl( path ) ).
                //Have to get data internal part of response because that is the data that returns data
                then( response => response.data );
 }
@@ -74,6 +79,72 @@ const RootQuery = new GraphQLObjectType( {
   }
 } );
 
+const mutation = new GraphQLObjectType( {
+  name: 'Mutation',
+  fields: {
+    addUser: {
+      //It should be noted that the type (a.k.a. return type) may not
+      // be the same as the type modified but in this case it is.
+      type: UserType,
+      args: {
+        firstName: { type: new GraphQLNonNull( GraphQLString ) },
+        lastName: { type: new GraphQLNonNull( GraphQLString ) },
+        age: { type: new GraphQLNonNull( GraphQLInt ) },
+        organizationId: { type: GraphQLString }
+      },
+      resolve( parentValue, { firstName, lastName, age, organizationId } ) {
+        return axios.post( backendUrl( 'users' ),
+          { firstName, lastName, age, organizationId } ).
+                     then( result => result.data );
+      }
+    },
+    deleteUser: {
+      type: UserType,
+      args: {
+        id: { type: new GraphQLNonNull( GraphQLString ) }
+      },
+      resolve( parentValue, { id } ) {
+        return axios.delete( backendUrl( `users/${id}` ) ).
+                     then( result => result.data );
+      }
+    },
+    editUser: {
+      type: UserType,
+      args: {
+        id: { type: new GraphQLNonNull( GraphQLString ) },
+        firstName: { type: GraphQLString },
+        lastName: { type: GraphQLString },
+        age: { type: GraphQLInt },
+        organizationId: { type: GraphQLString }
+      },
+      resolve( parentValue, args ) {
+/*
+        const { id, firstName, lastName, age, organizationId } = args;
+        let args = {};
+        if( firstName !== undefined ) {
+          args.firstName = firstName;
+        }
+        if( lastName !== undefined ) {
+          args.lastName = lastName;
+        }
+        if( age !== undefined ) {
+          args.age = age;
+        }
+        if( organizationId !== undefined ) {
+          args.organizationId = organizationId;
+        }
+*/
+        //args can be passed in directly as it only includes parameters
+        // passed by user
+        return axios.patch( backendUrl( `users/${id}` ), args ).
+                     then( result => result.data );
+      }
+    }
+
+  }
+} );
+
 module.exports = new GraphQLSchema( {
-  query: RootQuery
+  query: RootQuery,
+  mutation
 } );
