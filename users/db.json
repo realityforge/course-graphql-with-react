@@ -32,12 +32,12 @@
   "organizations": [
     {
       "id": "B",
-      "name" : "The Galactic Empire",
+      "name": "The Galactic Empire",
       "description": "The Bad guys"
     },
     {
       "id": "A",
-      "name" : "The Rebel Alliance",
+      "name": "The Rebel Alliance",
       "description": "The Good guys"
     }
   ]
