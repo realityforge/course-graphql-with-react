@@ -10,3 +10,9 @@ Note: The completed results of course as developed by the author are available a
 
     $ yarn install
     $ yarn start
+
+## users
+
+The user app makes use of a "backend" json service started via `yarn json:server` and accessible
+via url `http://127.0.0.1:3000/` or more specifically `http://127.0.0.1:3000/organizations` and
+`http://127.0.0.1:3000/users`.
