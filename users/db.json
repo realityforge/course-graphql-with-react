@@ -1,0 +1,23 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "firstName": "Luke",
+      "lastName": "Skywalker",
+      "age": 18
+    },
+    {
+      "id": "2",
+      "firstName": "Han",
+      "lastName": "Solo",
+      "age": 32
+    },
+    {
+      "id": "3",
+      "firstName": "Leia",
+      "lastName": "Organa",
+      "age": 18
+    }
+  ]
+}
+
