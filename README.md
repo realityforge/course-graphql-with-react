@@ -16,3 +16,8 @@ Note: The completed results of course as developed by the author are available a
 The user app makes use of a "backend" json service started via `yarn json:server` and accessible
 via url `http://127.0.0.1:3000/` or more specifically `http://127.0.0.1:3000/organizations` and
 `http://127.0.0.1:3000/users`.
+
+## lyrical
+
+This project was started by importing the project from the started repository
+[https://github.com/StephenGrider/Lyrical-GraphQL](https://github.com/StephenGrider/Lyrical-GraphQL).
