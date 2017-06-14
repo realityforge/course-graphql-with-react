@@ -12,6 +12,10 @@ class SongList extends Component {
     );
   }
 
+  renderSongListItem( song ) {
+    return <li key={song.id} className="collection-item">{song.title}</li>;
+  }
+
   renderSongList() {
     //Could also use if( !this.props.data.songs ) {
     // however !this.props.data.loading is a little easier to understand
@@ -19,9 +23,9 @@ class SongList extends Component {
       return <div>Loading...</div>;
     }
     return (
-      <ul className="collection">
-        {this.props.data.songs.map( s => <li key={s.id} className="collection-item">{s.title}</li>)}
-      </ul>
+        <ul className="collection">
+          {this.props.data.songs.map( s => this.renderSongListItem( s ) )}
+        </ul>
     );
   }
 }
