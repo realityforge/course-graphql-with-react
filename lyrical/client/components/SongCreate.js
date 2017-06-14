@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
+import { hashHistory } from 'react-router';
 
 class SongCreate extends Component {
   constructor( props ) {
@@ -28,6 +29,15 @@ class SongCreate extends Component {
   onFormSubmit( event ) {
     event.preventDefault();
     this.setState( { readOnly: true } );
+
+    // this.props.mutate is added by graphql HOC as the gql is a mutation
+    this.props.mutate( {
+      // This variable section lines up with variables declared in mutations
+      // sans the $ prefix
+      variables: {
+        title: this.state.title
+      }
+    } ).then( () => hashHistory.push( '/' ) );
   }
 }
 
