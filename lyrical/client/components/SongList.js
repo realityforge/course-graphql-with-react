@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
+import { Link } from 'react-router';
 
 class SongList extends Component {
   render() {
@@ -23,9 +24,14 @@ class SongList extends Component {
       return <div>Loading...</div>;
     }
     return (
+      <div>
         <ul className="collection">
           {this.props.data.songs.map( s => this.renderSongListItem( s ) )}
         </ul>
+        <Link to="/songs/new" className="btn-floating btn-large red right">
+          <i className="material-icons">add</i>
+        </Link>
+      </div>
     );
   }
 }
