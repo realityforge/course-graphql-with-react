@@ -16,7 +16,7 @@ class SongList extends Component {
     //Could also use if( !this.props.data.songs ) {
     // however !this.props.data.loading is a little easier to understand
     if( this.props.data.loading ) {
-      return <div>Loading...</div>
+      return <div>Loading...</div>;
     }
     return (
       <ul className="collection">
