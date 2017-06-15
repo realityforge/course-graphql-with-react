@@ -20,6 +20,7 @@ class LyricCreate extends Component {
   }
 
   onChange( event ) {
+    event.preventDefault();
     this.setState( { lyric: event.target.value } );
   }
 
