@@ -6,6 +6,7 @@ import { hashHistory, IndexRoute, Route, Router } from 'react-router';
 import App from './components/App';
 import SongCreate from './components/SongCreate';
 import SongList from './components/SongList';
+import './style/style.css';
 
 //ApolloClient assumes many things so do not need to configure it explicitly
 // - i.e. it assumes a /graphql url
