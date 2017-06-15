@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { hashHistory, Link } from 'react-router';
 import AddSong from '../queries/AddSong';
+import FindAllSongs from '../queries/FindAllSongs';
 
 class SongCreate extends Component {
   constructor( props ) {
@@ -42,7 +43,9 @@ class SongCreate extends Component {
       // of queries. So to mark a query as requiring refresh/invalidate the
       // cache for that query requires that query registered in refetchQueries
       // below
-      refetchQueries: []
+      refetchQueries: [{ query: FindAllSongs }]
+      //variables here can indicate the parameters to the query for cache to be busted
+      //refetchQueries: [{ query: FindAllSongs, variables: null }]
     } ).then( () => hashHistory.push( '/' ) );
   }
 }
