@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import { Link, hashHistory } from 'react-router';
+import { hashHistory, Link } from 'react-router';
 
 class SongCreate extends Component {
   constructor( props ) {
@@ -37,7 +37,12 @@ class SongCreate extends Component {
       // sans the $ prefix
       variables: {
         title: this.state.title
-      }
+      },
+      // Mutation changes state on the server but the client caches results
+      // of queries. So to mark a query as requiring refresh/invalidate the
+      // cache for that query requires that query registered in refetchQueries
+      // below
+      refetchQueries: []
     } ).then( () => hashHistory.push( '/' ) );
   }
 }
