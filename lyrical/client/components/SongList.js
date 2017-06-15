@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { Link } from 'react-router';
+import DeleteSong from '../queries/DeleteSong';
 import FindAllSongs from '../queries/FindAllSongs';
 
 class SongList extends Component {
@@ -14,7 +15,17 @@ class SongList extends Component {
   }
 
   renderSongListItem( song ) {
-    return <li key={song.id} className="collection-item">{song.title}</li>;
+    const { id, title } = song;
+    return (
+      <li key={id} className="collection-item">
+        {title}
+        <i
+          className="material-icons right"
+          onClick={e => this.onDeleteClick( id )}>
+          delete
+        </i>
+      </li>
+    );
   }
 
   renderSongList() {
@@ -34,7 +45,18 @@ class SongList extends Component {
       </div>
     );
   }
+
+  onDeleteClick( songId ) {
+    this.props.mutate( { variables: { id: songId } } ).
+         // using this.props.data.refetch() is an alternative way to bust the
+         // cache. It causes a refetch of all queries associated with component.
+         // We could use refetchQueries parameter to mutate to force refetch
+         // This is good if there is multiple queries and is slightly easier to
+         // use but does not handle the case when query is used by different
+         // component
+         then( () => this.props.data.refetch() );
+  }
 }
 
 // This is very similar to HOC from react-redux
-export default graphql( FindAllSongs )( SongList );
+export default graphql( DeleteSong )( graphql( FindAllSongs )( SongList ) );
