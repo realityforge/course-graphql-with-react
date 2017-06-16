@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import AddLyric from '../queries/AddLyric';
+import FindSongByID from '../queries/FindSongByID';
 
 class LyricCreate extends Component {
   constructor( props ) {
@@ -31,7 +32,11 @@ class LyricCreate extends Component {
       variables: {
         songId: this.props.songId,
         content: this.state.lyric
-      }
+      },
+      refetchQueries: [{
+        query: FindSongByID,
+        variables: { id: this.props.songId }
+      }]
     } ).then( () => {
       this.setState( { lyric: '', readOnly: false } );
     } );
