@@ -11,7 +11,10 @@ import './style/style.css';
 
 //ApolloClient assumes many things so do not need to configure it explicitly
 // - i.e. it assumes a /graphql url
-const client = new ApolloClient( {} );
+const client = new ApolloClient( {
+  // For every record returned use the id property on record to identify record
+  dataIdFromObject: o => o.id
+} );
 
 const Root = () => {
   return (
