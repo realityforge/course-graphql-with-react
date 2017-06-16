@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
+import LikeLyric from '../queries/LikeLyric';
 
 class LyricList extends Component {
   render() {
@@ -12,13 +14,28 @@ class LyricList extends Component {
     );
   }
 
-  renderLyric( { id, content } ) {
+  renderLyric( { id, content, likes } ) {
     return (
       <li key={id} className="collection-item">
         {content}
+        <i
+          className="material-icons"
+          onClick={ _ => this.onLike( id ) }
+        >
+          thumb_up
+        </i>
+        {likes}
       </li>
     );
   }
+
+  onLike( lyricId ) {
+    this.props.mutate( {
+      variables: {
+        lyricId: lyricId
+      }
+    } );
+  }
 }
 
-export default LyricList;
+export default graphql( LikeLyric )( LyricList );
