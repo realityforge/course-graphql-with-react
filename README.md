@@ -23,3 +23,7 @@ This project was started by importing the project from the started repository
 [https://github.com/StephenGrider/Lyrical-GraphQL](https://github.com/StephenGrider/Lyrical-GraphQL).
 It makes use of a remotely defined mongo database. Currently using a hosted, free, SAAS offering
 [MLAB](https://mlab.com/) configured in `lyrical/setup.sh`.
+
+## auth-graphql
+
+A third project based of starter project [https://github.com/StephenGrider/auth-graphql-starter](https://github.com/StephenGrider/auth-graphql-starter).
