@@ -21,3 +21,5 @@ via url `http://127.0.0.1:3000/` or more specifically `http://127.0.0.1:3000/org
 
 This project was started by importing the project from the started repository
 [https://github.com/StephenGrider/Lyrical-GraphQL](https://github.com/StephenGrider/Lyrical-GraphQL).
+It makes use of a remotely defined mongo database. Currently using a hosted, free, SAAS offering
+[MLAB](https://mlab.com/) configured in `lyrical/setup.sh`.
