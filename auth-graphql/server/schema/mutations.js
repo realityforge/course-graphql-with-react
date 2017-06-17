@@ -14,7 +14,7 @@ const mutation = new GraphQLObjectType( {
       },
       /**
        * request is new parameter that represents the request object coming from express
-       * Note: Some tutorials will name this "context"
+       * Note: Some tutorials will name this parameter "context"
        */
       resolve( parentValue, { email, password }, request ) {
         return AuthService.signup( { email, password, req: request } );
