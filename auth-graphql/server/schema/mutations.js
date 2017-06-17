@@ -19,6 +19,28 @@ const mutation = new GraphQLObjectType( {
       resolve( parentValue, { email, password }, request ) {
         return AuthService.signup( { email, password, req: request } );
       }
+    },
+    logout: {
+      type: UserType,
+      resolve( parentValue, args, request ) {
+        const user = request.user;
+        /**
+         * Passports logout function will clear the request.user during logout
+         * so we need to retrieve user before calling logout.
+         */
+        request.logout();
+        return user;
+      }
+    },
+    login: {
+      type: UserType,
+      args: {
+        email: { type: new GraphQLNonNull( GraphQLString ) },
+        password: { type: new GraphQLNonNull( GraphQLString ) }
+      },
+      resolve( parentValue, { email, password }, request ) {
+        return AuthService.login( { email, password, req: request } );
+      }
     }
   })
 } );
