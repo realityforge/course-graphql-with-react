@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { hashHistory, Link } from 'react-router';
+import LogoutUser from '../mutations/LogoutUser';
 import FindCurrentUser from '../queries/FindCurrentUser';
-import LogoutUser from '../queries/LogoutUser';
 
 class Header extends Component {
   renderButtons() {
