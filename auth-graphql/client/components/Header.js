@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import { Link } from 'react-router';
+import { hashHistory, Link } from 'react-router';
 import FindCurrentUser from '../queries/FindCurrentUser';
+import LogoutUser from '../queries/LogoutUser';
 
 class Header extends Component {
   renderButtons() {
@@ -11,7 +12,7 @@ class Header extends Component {
     else if( this.props.data.user ) {
       return (
         <div>
-          <button>Logout</button>
+          <a onClick={e => this.onLogoutClicked( e )}>Logout</a>
         </div>
       );
     }
@@ -41,6 +42,14 @@ class Header extends Component {
       </nav>
     );
   }
+
+  onLogoutClicked( event ) {
+    event.preventDefault();
+
+    this.props.mutate( {
+      refetchQueries: [{ query: FindCurrentUser }]
+    } ).then( () => hashHistory.push( '/' ) );
+  }
 }
 
-export default graphql( FindCurrentUser )( Header );
+export default graphql( LogoutUser )( graphql( FindCurrentUser )( Header ) );
