@@ -19,7 +19,7 @@ const client = new ApolloClient( {
   networkInterface
 } );
 
-const Dummy = () => <h1>Hi</h1>;
+const Dummy = () => <h1>Welcome</h1>;
 
 const Root = () => {
   return (
