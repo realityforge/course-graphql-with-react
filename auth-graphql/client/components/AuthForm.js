@@ -6,28 +6,35 @@ class AuthForm extends Component {
     this.state = { email: '', password: '' };
   }
 
-  onSubmit(event) {
+  onSubmit = ( event ) => {
     event.preventDefault();
     const { email, password } = this.state;
     this.props.onSubmit( { email, password } );
-  }
+  };
+
+  updateEmail = ( event ) => {
+    this.setState( { email: event.target.value } );
+  };
+
+  updatePassword = ( event ) => {
+    this.setState( { password: event.target.value } );
+  };
 
   render() {
     return (
       <div className="row">
-        <form className="col s4" onSubmit={e => this.onSubmit(e)}>
+        <form className="col s4" onSubmit={this.onSubmit}>
           <div className="input-field">
             <input type="text"
                    placeholder="Email"
                    value={this.state.email}
-                   onChange={e => this.setState( { email: e.target.value } )}/>
+                   onChange={this.updateEmail}/>
           </div>
           <div className="input-field">
             <input type="password"
                    placeholder="Password"
                    value={this.state.password}
-                   onChange={
-                     e => this.setState( { password: e.target.value } )}/>
+                   onChange={this.updatePassword}/>
           </div>
           <button className="btn">{this.props.authLabel}</button>
         </form>
