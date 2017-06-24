@@ -6,6 +6,7 @@ import { hashHistory, IndexRoute, Route, Router } from 'react-router';
 import App from './components/App';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
+import './style.css';
 
 const networkInterface = createNetworkInterface( {
   uri: '/graphql',
