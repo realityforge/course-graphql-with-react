@@ -3,13 +3,13 @@ import React, { Component } from 'react';
 class AuthForm extends Component {
   constructor( props ) {
     super( props );
-    this.state = { email: '', password: '' };
+    this.state = { email: '', password: '', errors: [] };
   }
 
   onSubmit = ( event ) => {
     event.preventDefault();
     const { email, password } = this.state;
-    this.props.onSubmit( { email, password } );
+    this.props.onSubmit( email, password );
   };
 
   updateEmail = ( event ) => {
@@ -35,6 +35,9 @@ class AuthForm extends Component {
                    placeholder="Password"
                    value={this.state.password}
                    onChange={this.updatePassword}/>
+          </div>
+          <div className="errors">
+            {this.props.errors.map( error => <div key={error}>{error}</div> )}
           </div>
           <button className="btn">{this.props.authLabel}</button>
         </form>
