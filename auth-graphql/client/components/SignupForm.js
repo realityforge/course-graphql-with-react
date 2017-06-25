@@ -13,12 +13,18 @@ class SignupForm extends Component {
       variables: { email, password },
       refetchQueries: [{ query: FindCurrentUser }]
     } ).
-         then( () => hashHistory.push( '/' ) ).
          catch( e => {
            const errors = e.graphQLErrors.map( o => o.message );
            this.setState( { errors } );
          } );
   };
+
+  componentWillUpdate( nextProps ) {
+    if( !this.props.data.user && nextProps.data.user ) {
+      // user went from not logged in, to logged in
+      hashHistory.push( '/' );
+    }
+  }
 
   render() {
     return (
