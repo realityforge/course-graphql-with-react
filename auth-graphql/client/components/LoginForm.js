@@ -6,10 +6,7 @@ import FindCurrentUser from '../queries/FindCurrentUser';
 import AuthForm from './AuthForm';
 
 class LoginForm extends Component {
-  constructor( props ) {
-    super( props );
-    this.state = { errors: [] };
-  }
+  state = { errors: [] };
 
   onSubmit = ( email, password ) => {
     this.props.mutate( {

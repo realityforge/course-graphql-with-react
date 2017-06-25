@@ -12,7 +12,7 @@ class Header extends Component {
     else if( this.props.data.user ) {
       return (
         <div>
-          <a onClick={e => this.onLogoutClicked( e )}>Logout</a>
+          <a onClick={this.onLogoutClicked}>Logout</a>
         </div>
       );
     }
@@ -43,7 +43,7 @@ class Header extends Component {
     );
   }
 
-  onLogoutClicked( event ) {
+  onLogoutClicked = ( event ) => {
     event.preventDefault();
 
     this.props.mutate( {
